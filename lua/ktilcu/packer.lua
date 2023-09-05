@@ -39,13 +39,10 @@ return require('packer').startup(function(use)
 				local ts_update = require('nvim-treesitter.install').update({ with_sync = true })
 				ts_update()
 			end,}
-  use("nvim-treesitter/playground")
-  use("theprimeagen/harpoon")
-  use("theprimeagen/refactoring.nvim")
   use("mbbill/undotree")
   use("tpope/vim-fugitive")
-  use("nvim-treesitter/nvim-treesitter-context");
-
+  use("tpope/vim-surround")
+  use("theprimeagen/harpoon")
   use {
 	  'VonHeikemen/lsp-zero.nvim',
 	  branch = 'v1.x',
@@ -68,11 +65,33 @@ return require('packer').startup(function(use)
 		  {'rafamadriz/friendly-snippets'},
 	  }
   }
-
+  use("m4xshen/autoclose.nvim")
   use("folke/zen-mode.nvim")
   use("github/copilot.vim")
-  use("eandrju/cellular-automaton.nvim")
-  use("laytan/cloak.nvim")
-
+  use {
+    'nvim-tree/nvim-tree.lua',
+    requires = {
+      'nvim-tree/nvim-web-devicons', -- optional
+    },
+  }
+  use {
+    'numToStr/Comment.nvim',
+    config = function()
+        require('Comment').setup()
+    end
+  }
+  use{
+    'MunifTanjim/prettier.nvim',
+    requires = {
+        {'neovim/nvim-lspconfig'},
+        {'jose-elias-alvarez/null-ls.nvim'},
+    }
+  }
+  use{
+    'folke/todo-comments.nvim',
+    requires = {
+      {'nvim-lua/plenary.nvim'}
+    },
+    config = {}
+  }
 end)
-
